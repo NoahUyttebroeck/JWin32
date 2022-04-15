@@ -10,15 +10,15 @@ import noah.uyttebroeck.window.WindowListenerImpl;
 public class Main {
     public static void main(String[] args) {
 
-        Window window = new Window("Goeiendag", 0, 0, 1024, 512) {
+        Window window = new Window("Hello World", 0, 0, 1024, 512) {
             @Override
             public void onInit() {
-                new Button("Ja", 70, 23, 0, 0, hWnd).setIsDefault(true);
-                Button b = new Button("Nee", 70, 23, 70, 0, hWnd);
+                new Button("Yes", 70, 23, 0, 0, hWnd).setIsDefault(true);
+                Button b = new Button("No", 70, 23, 70, 0, hWnd);
                 System.out.println(b.getHandle());
-                new CheckBox("Olala", 70, 23, 140, 0, hWnd);
-                new Radio("hmmm", 70, 23, 210, 0, hWnd);
-                new List("aeae", 70, 23, 280, 0, hWnd);
+                new CheckBox("Ola-la", 70, 23, 140, 0, hWnd);
+                new Radio("mmm", 70, 23, 210, 0, hWnd);
+                new List("xyz", 70, 23, 280, 0, hWnd);
                 addListener(new WindowListenerImpl());
             }
         };
