@@ -14,11 +14,11 @@ public class Button extends Control {
 
     private HFONT font;
 
-    public Button(String text, int width, int height, int x, int y, HWND parent) {
+    public Button(String text, int width, int height, int x, int y, Control parent) {
         this("BUTTON", text, WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, x, y, width, height, parent);
     }
 
-    protected Button(String ipClassName, String text, int dwStyle, int x, int y, int width, int height, HWND parent) {
+    protected Button(String ipClassName, String text, int dwStyle, int x, int y, int width, int height, Control parent) {
         super(ipClassName, text, dwStyle, x, y, width, height, parent);
         font = GDI32.INSTANCE.CreateFontA(14,0,0,0,FW_DONTCARE,false,false,false,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
                 CLIP_DEFAULT_PRECIS,CLEARTYPE_QUALITY, VARIABLE_PITCH,"Segoe UI");

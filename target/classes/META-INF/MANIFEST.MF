@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: noah.uyttebroeck.window.Window
+Main-Class: noah.uyttebroeck.controls.window.Window
 Class-Path: jna-platform-5.10.0.jar jna-5.10.0.jar
 

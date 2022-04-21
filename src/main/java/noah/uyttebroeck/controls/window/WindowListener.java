@@ -1,6 +1,7 @@
-package noah.uyttebroeck.window;
+package noah.uyttebroeck.controls.window;
 
 import com.sun.jna.platform.win32.Win32VK;
+import noah.uyttebroeck.controls.Control;
 
 public interface WindowListener {
 
@@ -59,5 +60,7 @@ public interface WindowListener {
     default boolean onMiddleMouseButtonUp() {
         return true;
     }
+
+    default boolean onControlClicked(Control clickedControl) {return true;}
 
 }

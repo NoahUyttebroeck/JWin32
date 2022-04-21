@@ -1,6 +1,8 @@
-package noah.uyttebroeck.window;
+package noah.uyttebroeck.controls.window;
 
 import com.sun.jna.platform.win32.Win32VK;
+import noah.uyttebroeck.controls.Control;
+import noah.uyttebroeck.controls.button.Button;
 
 public class WindowListenerImpl implements WindowListener {
     @Override
@@ -72,5 +74,14 @@ public class WindowListenerImpl implements WindowListener {
     @Override
     public boolean onMiddleMouseButtonUp() {
         return WindowListener.super.onMiddleMouseButtonUp();
+    }
+
+    @Override
+    public boolean onControlClicked(Control clickedControl) {
+        System.out.println(clickedControl.getText());
+        if (clickedControl instanceof Button) {
+            ((Button) clickedControl).setText("NIIIIICCEEEE");
+        }
+        return true;
     }
 }

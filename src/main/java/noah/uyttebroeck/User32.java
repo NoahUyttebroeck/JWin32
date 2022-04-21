@@ -72,6 +72,8 @@ public interface User32 extends com.sun.jna.platform.win32.User32 {
     int WS_EX_APPWINDOW = 0x00040000;
     int WM_NOTIFY = 0x004E;
 
+    int WM_PARENTNOTIFY = 0x0210;
+
     class LOGFONT extends Structure {
         public long lfHeight;
         public long lfWidth;
