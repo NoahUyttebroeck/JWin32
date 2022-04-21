@@ -1,7 +1,6 @@
 package noah.uyttebroeck.controls.button;
 
 import com.sun.jna.Pointer;
-import com.sun.jna.platform.win32.WinDef.HWND;
 import noah.uyttebroeck.GDI32;
 import noah.uyttebroeck.User32;
 import noah.uyttebroeck.controls.Control;

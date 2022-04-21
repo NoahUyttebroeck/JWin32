@@ -16,7 +16,7 @@ import static com.sun.jna.platform.unix.X11.*;
 
 public class Main {
     public static void main(String[] args) {
-        createLinuxWindow();
+        createWindowsWindow();
     }
 
     private static void createLinuxWindow() {

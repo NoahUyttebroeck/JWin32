@@ -1,6 +1,5 @@
 package noah.uyttebroeck.controls.button;
 
-import com.sun.jna.platform.win32.WinDef;
 import noah.uyttebroeck.controls.Control;
 
 import static com.sun.jna.platform.win32.WinUser.*;
