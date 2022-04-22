@@ -1,12 +1,8 @@
 package noah.uyttebroeck;
 
-
-import com.sun.jna.Pointer;
 import com.sun.jna.NativeLong;
-import noah.uyttebroeck.controls.button.Button;
-import noah.uyttebroeck.controls.button.CheckBox;
-import noah.uyttebroeck.controls.button.List;
-import noah.uyttebroeck.controls.button.Radio;
+import com.sun.jna.Platform;
+import noah.uyttebroeck.controls.button.*;
 import noah.uyttebroeck.controls.window.Window;
 import noah.uyttebroeck.controls.window.WindowListenerImpl;
 import com.sun.jna.platform.unix.X11;
@@ -16,12 +12,16 @@ import static com.sun.jna.platform.unix.X11.*;
 
 public class Main {
     public static void main(String[] args) {
-        createWindowsWindow();
+        if (Platform.isWindows()) {
+            createWindowsWindow();
+        } else {
+            createLinuxWindow();
+        }
     }
 
     private static void createLinuxWindow() {
 
-        final noah.uyttebroeck.X11 X11INSTANCE = noah.uyttebroeck.X11.INSTANCE;
+        final noah.uyttebroeck.unix.X11 X11INSTANCE = noah.uyttebroeck.unix.X11.INSTANCE;
 
         X11.Display display;
         X11.Window window;
@@ -65,16 +65,16 @@ public class Main {
     }
 
     private static void createWindowsWindow() {
-        Window window = new Window("Hello World", 0, 0, 1024, 512) {
+
+        new Window("Hello World", 0, 0, 1024, 512) {
             @Override
             public void onInit() {
-                new Button("Yes", 70, 23, 0, 0, this).setIsDefault(true);
-                Button b = new Button("No", 70, 23, 70, 0, this);
-                System.out.println(Pointer.nativeValue(b.getHandle().getPointer()));
+                new PushButton("Yes", 70, 23, 0, 0, this).setIsDefault(true);
+                PushButton b = new PushButton("No", 70, 23, 70, 0, this);
                 new CheckBox("Ola-la", 70, 23, 140, 0, this);
                 new Radio("mmm", 70, 23, 210, 0, this);
                 new List("xyz", 70, 23, 280, 0, this);
-                addListener(new WindowListenerImpl());
+                addListener(new WindowListenerImpl(b.getHandle()));
             }
         };
     }

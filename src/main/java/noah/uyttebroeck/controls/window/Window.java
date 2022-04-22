@@ -8,10 +8,10 @@ import com.sun.jna.platform.win32.WinDef.LRESULT;
 import com.sun.jna.platform.win32.WinDef.WPARAM;
 import com.sun.jna.platform.win32.WinUser.MSG;
 import com.sun.jna.platform.win32.WinUser.WindowProc;
-import noah.uyttebroeck.User32;
+import noah.uyttebroeck.windows.User32;
 import noah.uyttebroeck.controls.Control;
 
-import static noah.uyttebroeck.User32.*;
+import static noah.uyttebroeck.windows.User32.*;
 
 public abstract class Window extends Control implements WindowProc{
 
@@ -143,11 +143,6 @@ public abstract class Window extends Control implements WindowProc{
                 }
 
                 executeDefault = listener.onControlClicked(clickedControl);
-                break;
-            case WM_PARENTNOTIFY:
-                if (wParam.intValue() == WM_CREATE) {
-                    System.out.println("jah " + lParam);
-                }
                 break;
         }
         if (executeDefault) {

@@ -1,15 +1,15 @@
 package noah.uyttebroeck.controls.button;
 
 import com.sun.jna.Pointer;
-import noah.uyttebroeck.GDI32;
-import noah.uyttebroeck.User32;
+import noah.uyttebroeck.windows.GDI32;
+import noah.uyttebroeck.windows.User32;
 import noah.uyttebroeck.controls.Control;
 
 import static com.sun.jna.platform.win32.WinUser.*;
-import static noah.uyttebroeck.User32.*;
-import static noah.uyttebroeck.User32.VARIABLE_PITCH;
+import static noah.uyttebroeck.windows.User32.*;
+import static noah.uyttebroeck.windows.User32.VARIABLE_PITCH;
 
-public class Button extends Control {
+public abstract class Button extends Control {
 
     private HFONT font;
 

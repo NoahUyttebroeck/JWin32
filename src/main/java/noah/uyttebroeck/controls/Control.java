@@ -2,7 +2,7 @@ package noah.uyttebroeck.controls;
 
 import com.sun.jna.platform.win32.*;
 import com.sun.jna.platform.win32.WinDef.HWND;
-import noah.uyttebroeck.User32;
+import noah.uyttebroeck.windows.User32;
 
 import java.util.ArrayList;
 

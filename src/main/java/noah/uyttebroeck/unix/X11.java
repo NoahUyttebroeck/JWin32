@@ -1,4 +1,4 @@
-package noah.uyttebroeck;
+package noah.uyttebroeck.unix;
 
 import com.sun.jna.Native;
 

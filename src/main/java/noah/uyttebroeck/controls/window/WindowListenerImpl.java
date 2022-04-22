@@ -1,10 +1,22 @@
 package noah.uyttebroeck.controls.window;
 
+import com.sun.jna.Pointer;
 import com.sun.jna.platform.win32.Win32VK;
+import com.sun.jna.platform.win32.WinDef;
 import noah.uyttebroeck.controls.Control;
 import noah.uyttebroeck.controls.button.Button;
+import noah.uyttebroeck.controls.button.PushButton;
 
 public class WindowListenerImpl implements WindowListener {
+
+    private int counter;
+    private WinDef.HWND handle;
+
+    public WindowListenerImpl(WinDef.HWND handle) {
+        this.handle = handle;
+        counter = 0;
+    }
+
     @Override
     public boolean onKeyUp(Win32VK key) {
         System.out.println(key.name() + " aaeae");
@@ -78,9 +90,13 @@ public class WindowListenerImpl implements WindowListener {
 
     @Override
     public boolean onControlClicked(Control clickedControl) {
-        System.out.println(clickedControl.getText());
-        if (clickedControl instanceof Button) {
-            ((Button) clickedControl).setText("NIIIIICCEEEE");
+        if (clickedControl instanceof PushButton) {
+            Button button = (Button) clickedControl;
+            if (Pointer.nativeValue(button.getHandle().getPointer()) == Pointer.nativeValue(handle.getPointer())) {
+                counter++;
+                System.out.println(counter);
+                button.setText(counter + "");
+            }
         }
         return true;
     }
