@@ -13,7 +13,7 @@ public abstract class Button extends Control {
 
     private HFONT font;
 
-    public Button(String text, int width, int height, int x, int y, Control parent) {
+    protected Button(String text, int width, int height, int x, int y, Control parent) {
         this("BUTTON", text, WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, x, y, width, height, parent);
     }
 
@@ -24,7 +24,7 @@ public abstract class Button extends Control {
         INSTANCE.SendMessage(getHandle(), WM_SETFONT, new WPARAM(Pointer.nativeValue(font.getPointer())), new LPARAM(1));
     }
 
-    public void setIsDefault(boolean isDefault) {
+    public final void setIsDefault(boolean isDefault) {
         long currentStyle = INSTANCE.GetWindowLong(getHandle(), GWL_STYLE);
         if (isDefault) {
             //remove normal
@@ -40,10 +40,10 @@ public abstract class Button extends Control {
     }
 
 
-    public void setText(String text) {
+    public final void setText(String text) {
         User32.INSTANCE.SetWindowText(handle, text);
         this.text = text;
     }
 
-    public void onClick(){}
+    public abstract void onClick();
 }

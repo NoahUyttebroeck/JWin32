@@ -45,6 +45,7 @@ public interface User32 extends com.sun.jna.platform.win32.User32 {
          HANDLE h
     );
 
+    //TODO place these constants in own class or enum
     int FW_DONTCARE = 0;
     int OUT_OUTLINE_PRECIS = 8;
     int CLIP_DEFAULT_PRECIS = 0;
@@ -72,6 +73,47 @@ public interface User32 extends com.sun.jna.platform.win32.User32 {
     int WM_NOTIFY = 0x004E;
 
     int WM_PARENTNOTIFY = 0x0210;
+    int SS_CENTER = 0x00000001;
+
+    int TA_RIGHT = 2;
+    int TA_CENTER = 6;
+    int TA_BOTTOM = 8;
+    int TA_BASELINE = 24;
+
+    int DT_TOP                      = 0x00000000;
+    int DT_LEFT                     = 0x00000000;
+    int DT_CENTER                   = 0x00000001;
+    int DT_RIGHT                    = 0x00000002;
+    int DT_VCENTER                  = 0x00000004;
+    int DT_BOTTOM                   = 0x00000008;
+    int DT_WORDBREAK                = 0x00000010;
+    int DT_SINGLELINE               = 0x00000020;
+    int DT_EXPANDTABS               = 0x00000040;
+    int DT_TABSTOP                  = 0x00000080;
+    int DT_NOCLIP                   = 0x00000100;
+    int DT_EXTERNALLEADING          = 0x00000200;
+    int DT_CALCRECT                 = 0x00000400;
+    int DT_NOPREFIX                 = 0x00000800;
+    int DT_INTERNAL                 = 0x00001000;
+    int DT_EDITCONTROL              = 0x00002000;
+    int DT_PATH_ELLIPSIS            = 0x00004000;
+    int DT_END_ELLIPSIS             = 0x00008000;
+    int DT_MODIFYSTRING             = 0x00010000;
+    int DT_RTLREADING               = 0x00020000;
+    int DT_WORD_ELLIPSIS            = 0x00040000;
+    int DT_NOFULLWIDTHCHARBREAK     = 0x00080000;
+    int DT_HIDEPREFIX               = 0x00100000;
+    int DT_PREFIXONLY               = 0x00200000;
+    int SS_CENTERIMAGE = 0x00000200;
+    String WC_LISTVIEW = "SysListView32";
+    int LVS_REPORT = 0x0001;
+    int LVS_LIST = 0x0003;
+    int LVS_TYPEMASK = 0x0003;
+    int LVS_SINGLESEL = 0x0004;
+    int LVS_AUTOARRANGE = 0x0100;
+    int LVS_EDITLABELS = 0x0200;
+    int LVS_NOSCROLL = 0x2000;
+    int LVS_NOCOLUMNHEADER = 0x4000;
 
     class LOGFONT extends Structure {
         public long lfHeight;
@@ -147,5 +189,22 @@ public interface User32 extends com.sun.jna.platform.win32.User32 {
                     "lfMessageFont",
                     "iPaddedBorderWidth");
         }
+    }
+
+    HDC GetWindowDC(
+        HWND hWnd
+    );
+
+    int DrawTextExA(
+            HDC hdc,
+            String lpchText,
+            int cchText,
+            RECT lprc,
+            int format,
+            Object  lpdtp
+    );
+
+    default int DrawText(HDC hdc, String lpchText, RECT lprc, int format) {
+        return DrawTextExA(hdc, lpchText, lpchText.length(), lprc, format, null);
     }
 }

@@ -61,11 +61,52 @@ public abstract class Control {
 
     }
 
-    public HWND getHandle() {
+    public final HWND getHandle() {
         return handle;
     }
 
-    public String getText() {
+    public final String getText() {
         return text;
+    }
+
+
+    /*Transformation functions TODO replace with a transform object*/
+    public final void setWidth(int width) {
+        this.width = width;
+        User32.INSTANCE.SetWindowPos(handle, null, x, y, width, height, 0);
+    }
+
+    public final void setHeight(int height) {
+        this.height = height;
+        User32.INSTANCE.SetWindowPos(handle, null, x, y, width, height, 0);
+    }
+
+    public final void setSize(int width, int height) {
+        this.width = width;
+        this.height = height;
+        User32.INSTANCE.SetWindowPos(handle, null, x, y, width, height, 0);
+    }
+
+    public final void setX(int x) {
+        this.x = x;
+        User32.INSTANCE.SetWindowPos(handle, null, x, y, width, height, 0);
+    }
+    public final void setY(int y) {
+        this.y = y;
+        User32.INSTANCE.SetWindowPos(handle, null, x, y, width, height, 0);
+    }
+
+    public final void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
+        User32.INSTANCE.SetWindowPos(handle, null, x, y, width, height, 0);
+    }
+
+    public final void setTransform(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        User32.INSTANCE.SetWindowPos(handle, null, x, y, width, height, 0);
     }
 }

@@ -8,6 +8,7 @@ import com.sun.jna.platform.win32.WinDef.LRESULT;
 import com.sun.jna.platform.win32.WinDef.WPARAM;
 import com.sun.jna.platform.win32.WinUser.MSG;
 import com.sun.jna.platform.win32.WinUser.WindowProc;
+import noah.uyttebroeck.controls.button.Button;
 import noah.uyttebroeck.windows.User32;
 import noah.uyttebroeck.controls.Control;
 
@@ -42,6 +43,7 @@ public abstract class Window extends Control implements WindowProc{
     }
 
     public abstract void onInit();
+    public abstract void onLoop();
 
     private void loop() {
         MSG msg = new MSG();
@@ -50,6 +52,7 @@ public abstract class Window extends Control implements WindowProc{
                 User32.INSTANCE.TranslateMessage(msg);
                 User32.INSTANCE.DispatchMessage(msg);
             }
+            onLoop();
         }
     }
 
@@ -142,7 +145,15 @@ public abstract class Window extends Control implements WindowProc{
                     }
                 }
 
-                executeDefault = listener.onControlClicked(clickedControl);
+                if (listener != null) {
+                    executeDefault = listener.onControlClicked(clickedControl);
+                }
+
+                if (executeDefault || listener == null) {
+                    if (clickedControl instanceof Button) {
+                        ((Button) clickedControl).onClick();
+                    }
+                }
                 break;
         }
         if (executeDefault) {
@@ -151,7 +162,7 @@ public abstract class Window extends Control implements WindowProc{
         return new LRESULT(0);
     }
 
-    public void addListener(WindowListener listener) {
+    public final void addListener(WindowListener listener) {
         this.listener = listener;
     }
 }
